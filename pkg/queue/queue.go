@@ -159,6 +159,8 @@ func (q *Queues) Add(namespace string, name string, uri string,
 		return err
 	}
 
+	klog.Warningf("Queue service name: %s", queueServiceName)
+
 	messages := int32(UnsyncedQueueMessageCount)
 	idleWorkers := int32(UnsyncedIdleWorkers)
 	messagesSent := float64(UnsyncedMessagesSentPerMinute)
