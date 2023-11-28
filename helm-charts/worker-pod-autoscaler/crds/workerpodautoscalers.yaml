@@ -33,6 +33,7 @@ spec:
             - minReplicas
             - maxReplicas
             - queueURI
+            - queueServiceName
             - targetMessagesPerWorker
             oneOf:
             - required:
@@ -61,6 +62,10 @@ spec:
               queueURI:
                 type: string
                 description: 'Full URL of the queue'
+              queueServiceName:
+                type: string
+                description: 'Name of the service (e.g. "sqs")'
+                pattern: '^sqs|beanstalkd$'
               targetMessagesPerWorker:
                 type: integer
                 format: int32

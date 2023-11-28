@@ -7,6 +7,7 @@ spec:
   maxReplicas: 10
   deploymentName: example-deployment
   queueURI: https://sqs.ap-south-1.amazonaws.com/{{aws_account_id}}/{{queue_prefix-queue_name-queue_suffix}}
+  queueServiceName: sqs
   targetMessagesPerWorker: 2
   secondsToProcessOneJob: 0.03
   maxDisruption: "100%"

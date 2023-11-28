@@ -1,9 +1,5 @@
 package queue
 
-import (
-	"regexp"
-)
-
 // QueuingService is the interface for the message queueing service
 // For example: SQS and Beanstalk implements QueuingService interface
 
@@ -22,24 +18,4 @@ type QueuingService interface {
 	//2. updateIdleWorkers(key, -1) i.e tells how many workers are idle
 	//3. updateMessage(key, approxMessagesVisible) i.e queuedMessages
 	poll(key string, queueSpec QueueSpec)
-}
-
-// getQueueService returns the provider name
-// TODO: add validation for the queue service in the wpa custom resource
-func getQueueServiceName(host, protocol string) (bool, string, error) {
-	matched, err := regexp.MatchString(
-		"^sqs.[a-z][a-z]-[a-z]*-[0-9]{1}.amazonaws.com", host)
-	if err != nil {
-		return false, "", nil
-	}
-
-	if matched {
-		return true, SqsQueueService, nil
-	}
-
-	if protocol == BenanstalkProtocol {
-		return true, BeanstalkQueueService, nil
-	}
-
-	return false, "", nil
 }

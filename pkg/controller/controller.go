@@ -409,6 +409,7 @@ func (c *Controller) syncHandler(ctx context.Context, event WokerPodAutoScalerEv
 			namespace,
 			name,
 			workerPodAutoScaler.Spec.QueueURI,
+			workerPodAutoScaler.Spec.QueueServiceName,
 			currentWorkers,
 			secondsToProcessOneJob,
 		)
@@ -417,6 +418,7 @@ func (c *Controller) syncHandler(ctx context.Context, event WokerPodAutoScalerEv
 			namespace,
 			name,
 			workerPodAutoScaler.Spec.QueueURI,
+			workerPodAutoScaler.Spec.QueueServiceName,
 			currentWorkers,
 			secondsToProcessOneJob,
 		)

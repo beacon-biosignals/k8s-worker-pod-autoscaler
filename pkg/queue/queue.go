@@ -144,7 +144,7 @@ func (q *Queues) Sync(stopCh <-chan struct{}) {
 }
 
 func (q *Queues) Add(namespace string, name string, uri string,
-	workers int32, secondsToProcessOneJob float64) error {
+	queueServiceName string, workers int32, secondsToProcessOneJob float64) error {
 
 	if uri == "" {
 		klog.Warningf(
@@ -157,13 +157,6 @@ func (q *Queues) Add(namespace string, name string, uri string,
 	protocol, host, err := parseQueueURI(uri)
 	if err != nil {
 		return err
-	}
-
-	supported, queueServiceName, err := getQueueServiceName(host, protocol)
-	if !supported {
-		klog.Warningf(
-			"Unsupported: %s, skipping wpa: %s", queueServiceName, name)
-		return nil
 	}
 
 	messages := int32(UnsyncedQueueMessageCount)

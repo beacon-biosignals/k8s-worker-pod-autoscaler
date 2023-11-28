@@ -44,6 +44,7 @@ func buildQueues(
 			spec.namespace,
 			spec.name,
 			getQueueURI(spec.namespace, spec.name),
+			BeanstalkQueueService,
 			spec.workers,
 			spec.secondsToProcessOneJob,
 		)
